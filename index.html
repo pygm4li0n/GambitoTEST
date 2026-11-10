@@ -74,7 +74,6 @@
         background:
             radial-gradient(ellipse 1000px 500px at 50% -5%, rgba(255, 255, 255, 0.06), transparent 60%),
             radial-gradient(ellipse 700px 500px at 50% 55%, rgba(255, 90, 90, 0.09), transparent 68%),
-            /* Eliminado var(--brushed) para quitar las líneas verticales */
             linear-gradient(180deg, #1c1f27 0%, #111318 60%, #080a0e 100%);
         overflow: hidden;
         border-bottom: 1px solid var(--border);
@@ -82,7 +81,6 @@
     .hero::after {
         content: "";
         position: absolute; inset: 0; z-index: 1; pointer-events: none;
-        /* Dejamos solo las líneas horizontales */
         background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
         background-size: 48px 48px;
         -webkit-mask-image: radial-gradient(ellipse 60% 70% at 72% 50%, #000, transparent 75%);
@@ -122,6 +120,8 @@
         letter-spacing: 1.5px; text-transform: uppercase;
         color: var(--muted);
     }
+    .desktop-meta { display: inline-flex; align-items: center; gap: 6px; }
+    .mobile-meta { display: none; }
     .plane-icon {
         display: inline-block;
         width: 1.05em;
@@ -186,6 +186,8 @@
         font-weight: 500;
         margin-bottom: 30px;
     }
+    .hero-desc-line1 { display: inline; }
+    .desktop-br { display: block; }
     .hero-430 {
         color: var(--white);
         font-weight: 900;
@@ -235,7 +237,6 @@
         perspective: 1400px;
         margin: 0 auto;
         transform: translateY(-10px) translateX(-75px);
-
     }
     .plate {
         container-type: inline-size;
@@ -326,7 +327,7 @@
         white-space: pre;
         padding-right: 40px;
     }
-    .star-sep {
+    .ticker-track span.star-sep {
         color: var(--laser);
         text-shadow: 0 0 10px var(--laser-glow);
         display: inline-block;
@@ -743,14 +744,15 @@
             width: 100%;
             border-bottom: none;
         }
-        .hero-meta {
+        .desktop-meta { display: none !important; }
+        .mobile-meta {
+            display: inline-block !important;
             text-align: center;
-            font-size: 0.6rem;
-            letter-spacing: 1px;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
             width: 100%;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
-            justify-content: center;
         }
         .hero-logo { justify-content: center; font-size: 1.1rem; }
         
@@ -758,7 +760,7 @@
         
         .hero-title {
             order: 1;
-            font-size: clamp(1.25rem, 5.8vw, 2.1rem);
+            font-size: clamp(1.3rem, 5.5vw, 2.2rem); /* Título más grande en mobile */
             text-align: center;
             margin-bottom: 24px;
             white-space: nowrap;
@@ -771,7 +773,7 @@
             height: 240px;
             --ps: min(120px, 30vw);
             margin-bottom: 30px;
-            transform: translateY(0) translateX(0); /* Resetea el desplazamiento en mobile */
+            transform: translateY(0) translateX(0);
         }
         .plate-back {
             display: block !important;
@@ -781,7 +783,7 @@
         }
         .plate-mid {
             left: 50% !important;
-            transform: translate(-50%, -50%) rotate(0deg) !important;
+            transform: translate(-50%, -62%) rotate(0deg) !important; /* Carta del medio más arriba */
             z-index: 3;
         }
         .plate-front {
@@ -793,21 +795,27 @@
             transform: translate(-50%, -54%) rotate(-7deg) scale(1.05) !important;
         }
         .plate-mid:hover {
-            transform: translate(-50%, -54%) rotate(0deg) scale(1.05) !important;
+            transform: translate(-50%, -66%) rotate(0deg) scale(1.05) !important;
         }
         .plate-front:hover {
             transform: translate(-50%, -54%) rotate(7deg) scale(1.05) !important;
         }
         
-        .plate-cap { order: 3; margin-bottom: 20px; }
+        .plate-cap {
+            order: 3;
+            margin-bottom: 20px;
+            transform: translateX(0) !important; /* 100% Grabado Laser centrado */
+        }
         
         .hero-desc {
             order: 4;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 24px;
-            padding: 0 20px;
+            padding: 0 10px;
         }
+        .hero-desc-line1 { white-space: nowrap; display: inline-block; font-size: 0.8rem; }
+        .desktop-br { display: none; } /* Elimina el salto de línea para que fluya */
         
         .hero-actions {
             order: 5;
@@ -825,6 +833,7 @@
             padding: 12px 16px;
             letter-spacing: 0.5px;
         }
+        .btn-consultar { display: none !important; } /* Remueve Consultar en mobile */
         
         .mobile-buttons { display: none !important; }
     }
@@ -867,8 +876,11 @@
     <div class="hero-nav">
         <div class="hero-logo">GAMBITO <span class="logo-dot"></span> LÁSER</div>
         <div class="hero-meta">
-            Buenos Aires - Ezeiza · Envíos internacionales
-            <svg class="plane-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            <span class="desktop-meta">
+                Buenos Aires - Ezeiza · Envíos internacionales
+                <svg class="plane-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </span>
+            <span class="mobile-meta">Servicio Profesional de Grabado Láser</span>
         </div>
     </div>
     <div class="hero-split">
@@ -879,11 +891,11 @@
                 <span class="outline">absoluta</span><br>
                 <span class="grad">en acero.</span>
             </h1>
-            <p class="hero-desc">Grabado láser de fibra óptica sobre acero <strong class="hero-430">430</strong>.<br>Piezas permanentes, hechas a mano, pensadas para durar décadas.</p>
+            <p class="hero-desc"><span class="hero-desc-line1">Grabado láser de fibra óptica sobre acero <strong class="hero-430">430</strong>.</span><br class="desktop-br">Piezas permanentes, hechas a mano, pensadas para durar décadas.</p>
             <div class="hero-actions">
                 <a href="#tarjetas" class="btn-primary">Ver catálogo</a>
                 <button type="button" class="btn-order" id="heroOrderBtn">Realizar pedido</button>
-                <a href="https://wa.me/5491131388625" target="_blank" rel="noopener noreferrer" class="btn-ghost">Consultar</a>
+                <a href="https://wa.me/5491131388625" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-consultar">Consultar</a>
             </div>
         </div>
 
@@ -1832,6 +1844,7 @@
         });
     }
     sizeAll();
+    setTimeout(sizeAll, 300); /* Recalcula tamaños en mobile para que las chispas se vean bien */
     window.addEventListener('resize', function() {
         isMobile = window.innerWidth <= 860;
         sizeAll();
@@ -1850,7 +1863,7 @@
         data.forEach(function (pp, j) { pp.el.classList.toggle('engraving', j === activeIdx); });
     });
 
-        if (still) {
+    if (still) {
         data.forEach(function (p) { if (p.eng) p.eng.style.clipPath = 'none'; });
         return;
     }
@@ -1909,8 +1922,6 @@
                 p.beam.style.opacity = 0;
             }
         });
-
-        // Eliminada la actualización de porcentaje para dejarlo fijo en 100%
     }
     requestAnimationFrame(frame);
 })();
