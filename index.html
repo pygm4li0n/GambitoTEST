@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>GAMBITO LÁSER — Grabado Profesional en Acero 430</title>
-<meta name="description" content="Servicio profesional de grabado láser de fibra óptica sobre acero inoxidable 430. 5 años de experiencia. Envíos internacionales.">
+<meta name="description" content="Servicio profesional de grabado láser de fibra óptica sobre acero 430. Envíos internacionales.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0f13'/%3E%3Ctext x='32' y='46' font-family='Arial Black,Arial' font-size='32' font-weight='900' text-anchor='middle' fill='%23dde0e6'%3E4%3C/text%3E%3Ctext x='32' y='58' font-family='Arial' font-size='10' text-anchor='middle' fill='%23FF6B6B'%3E30%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,7 @@
         --chrome-btn: linear-gradient(180deg, #ffffff 0%, #eef0f4 30%, #c4c8d1 50%, #dde0e6 65%, #ffffff 100%);
         --steel-plate: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 5%, transparent 95%, rgba(0,0,0,0.35) 100%), linear-gradient(135deg, #262932 0%, #1a1d24 55%, #14171d 100%);
         --brushed: repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, rgba(0,0,0,0.05) 1px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 4px);
+        --promo-grad: linear-gradient(135deg, #ff5757 0%, #c40000 45%, #ff2b2b 100%);
     }
 
     @property --angle {
@@ -64,8 +65,8 @@
     /* ═══════════ HERO ═══════════ */
     .hero {
         position: relative;
-        min-height: calc(100dvh - 48px); /* Ajuste para que entre justo el ticker */
-        padding: clamp(20px, 4vw, 40px) clamp(20px, 5vw, 60px) 0;
+        min-height: calc(100dvh - 48px);
+        padding: clamp(16px, 3vw, 32px) clamp(12px, 2.2vw, 32px) 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -89,10 +90,10 @@
 
     .hero-nav {
         position: relative; z-index: 3;
-        width: 100%; max-width: 1240px;
+        width: 100%; max-width: 1480px;
         display: flex; justify-content: space-between; align-items: center;
-        padding-bottom: 20px;
-        margin-bottom: clamp(20px, 4vh, 40px);
+        padding-bottom: 18px;
+        margin-bottom: clamp(14px, 2.6vh, 28px);
         border-bottom: 1px solid var(--border);
     }
     .hero-logo {
@@ -112,20 +113,32 @@
         animation: dotPulse 1.8s ease-in-out infinite;
     }
     .hero-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         font-family: 'Space Mono', monospace;
         font-size: 0.72rem; font-weight: 700;
         letter-spacing: 1.5px; text-transform: uppercase;
         color: var(--muted);
     }
+    .plane-icon {
+        display: inline-block;
+        width: 1.05em;
+        height: 1.05em;
+        vertical-align: -0.16em;
+        color: var(--laser);
+        filter: drop-shadow(0 0 6px var(--laser-glow));
+        margin-left: 2px;
+    }
 
     .hero-split {
         position: relative; z-index: 2;
-        width: 100%; max-width: 1240px;
+        width: 100%; max-width: 1480px;
         display: grid;
-        grid-template-columns: 1.05fr 1.15fr;
-        gap: clamp(24px, 3vw, 48px);
+        grid-template-columns: 0.9fr 1.1fr; /* Más espacio y centrado para las cartas */
+        gap: clamp(20px, 2.4vw, 40px);
         align-items: center;
-        padding-bottom: 52px; /* Aire extra para que los CTAs no queden pegados al ticker */
+        padding-bottom: 48px;
     }
     .hero-inner { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
 
@@ -137,41 +150,33 @@
         text-transform: uppercase;
         color: var(--laser);
         text-shadow: 0 0 22px var(--laser-glow);
-        margin-bottom: 22px;
-        padding-left: 18px;
+        margin-bottom: 20px;
         position: relative;
-    }
-    .hero-eyebrow::before {
-        content: "";
-        position: absolute;
-        left: 0; top: 50%;
-        width: 8px; height: 8px;
-        margin-top: -4px;
-        border-radius: 50%;
-        background: var(--laser);
-        box-shadow: 0 0 16px var(--laser-glow);
-        animation: dotPulse 1.8s ease-in-out infinite;
+        /* Pulse dot eliminado */
     }
     .hero-title {
         font-family: 'Bebas Neue', 'Oswald', Impact, sans-serif;
         font-size: clamp(3.6rem, 7.6vw, 6.6rem);
-        line-height: 0.88;
+        line-height: 0.9;
         letter-spacing: 0.005em;
-        text-transform: uppercase; /* Asegura el render correcto de la tilde */
-        padding-top: 0.14em;       /* Da aire arriba para que el acento no se recorte */
+        text-transform: uppercase;
+        padding-top: 0.18em;
+        margin-bottom: 22px;
+        color: var(--white);
+        filter: drop-shadow(0 1px 0 rgba(0,0,0,0.95)) drop-shadow(0 -1px 0 rgba(255,255,255,0.14)) drop-shadow(0 14px 24px rgba(0,0,0,0.85));
+    }
+    .hero-title .grad {
         background: var(--chrome);
         background-size: 100% 200%;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 1px 0 rgba(0,0,0,0.95)) drop-shadow(0 -1px 0 rgba(255,255,255,0.14)) drop-shadow(0 14px 24px rgba(0,0,0,0.85));
-        margin-bottom: 22px;
     }
     .hero-title .outline {
         -webkit-text-fill-color: transparent;
-        -webkit-text-stroke: 2px var(--soft);
-        position: relative;
+        -webkit-text-stroke: 1.5px #e8ebf0;
         display: inline-block;
+        filter: drop-shadow(0 0 24px rgba(255, 107, 107, 0.28));
     }
     .hero-desc {
         font-size: clamp(0.95rem, 1.3vw, 1.1rem);
@@ -179,47 +184,23 @@
         color: var(--soft);
         max-width: 100%;
         font-weight: 500;
-        margin-bottom: 28px;
-    }
-    .hero-stats {
-        display: flex;
-        gap: 56px;
         margin-bottom: 30px;
-        padding: 20px 0;
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        flex-wrap: wrap;
-        width: 100%;
     }
-    .hero-stat { display: flex; flex-direction: column; gap: 6px; }
-    .hero-stat strong {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: clamp(2.2rem, 3.2vw, 3.1rem);
-        line-height: 1;
-        background: var(--chrome);
-        background-size: 100% 200%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 1px 0 rgba(0,0,0,0.6));
-        letter-spacing: 0.02em;
+    .hero-430 {
+        color: var(--white);
+        font-weight: 900;
+        font-size: 1.15em;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
     }
-    .hero-stat span {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.66rem;
-        font-weight: 700;
-        letter-spacing: 2.5px;
-        text-transform: uppercase;
-        color: var(--ink);
-    }
-    .hero-actions { display: flex; gap: 10px; flex-wrap: nowrap; margin-bottom: 6px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .btn-primary, .btn-ghost, .btn-order {
         display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        padding: 14px 18px;
+        padding: 14px 22px;
         border-radius: 40px;
         font-family: 'Space Mono', monospace;
-        font-size: 0.76rem;
+        font-size: 0.78rem;
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -244,16 +225,16 @@
     .btn-ghost:hover { background: rgba(255, 90, 90, 0.10); border-color: var(--laser); color: var(--laser); box-shadow: 0 0 26px rgba(255, 90, 90, 0.32); }
 
     /* ── STACK DE 3 TARJETAS HORIZONTAL ── */
-    .hero-stage { display: flex; flex-direction: column; align-items: center; gap: 20px; position: relative; width: 100%; }
+    .hero-stage { display: flex; flex-direction: column; align-items: center; gap: 18px; position: relative; width: 100%; }
     .cards-stack {
-        --ps: min(250px, 24vw);
+        --ps: min(260px, 24vw);
         position: relative;
         width: 100%;
-        max-width: 760px;
+        max-width: 800px;
         height: 500px;
         perspective: 1400px;
         margin: 0 auto;
-        transform: translateY(-10px); /* Sube las cards */
+        transform: translateY(-10px) translateX(-25px); /* Centra más las cartas */
     }
     .plate {
         container-type: inline-size;
@@ -264,7 +245,6 @@
         border-radius: 16px;
         overflow: hidden;
         
-        /* RIM GRADIENT */
         border: 2px solid transparent;
         background:
             var(--brushed) padding-box,
@@ -299,7 +279,6 @@
         text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 -1px 0 rgba(0,0,0,0.3);
         clip-path: inset(0 0 100% 0);
     }
-    .plate-eng.plate-ghost { clip-path: none; opacity: 0.14; text-shadow: none; }
     .plate-eng .hero-img {
         position: absolute; inset: 0;
         width: 100%; height: 100%;
@@ -308,11 +287,6 @@
         z-index: 3;
     }
     .plate-eng .hero-img.has { display: block; }
-    .p-mark { width: 22%; }
-    .p-name { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 21cqw; line-height: 0.92; letter-spacing: 0.06em; }
-    .p-rule { width: 100%; height: 1px; background: currentColor; opacity: 0.6; box-shadow: 0 1px 0 rgba(255,255,255,0.6); }
-    .p-meta { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 4.6cqw; letter-spacing: 0.2em; line-height: 1.8; }
-    .p-no { align-self: flex-end; }
 
     .plate-beam {
         position: absolute; left: -2%; right: -2%; top: 0; height: 2px;
@@ -335,16 +309,33 @@
 
     /* ═══════════ TICKER ═══════════ */
     .ticker { overflow: hidden; background: #0a0c10; border-bottom: 1px solid var(--border); padding: 14px 0; height: 48px; display: flex; align-items: center; }
-    .ticker-track { display: flex; width: max-content; animation: tick 38s linear infinite; }
-    .ticker-track span { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; letter-spacing: 4px; color: var(--muted); white-space: pre; }
-    @keyframes tick { to { transform: translateX(-50%); } }
+    .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: tick 26s linear infinite;
+        will-change: transform;
+        transform: translate3d(0, 0, 0);
+    }
+    .ticker-track span {
+        font-family: 'Space Mono', monospace;
+        font-size: 1rem; /* Más grande */
+        font-weight: 700; /* Más gordito */
+        letter-spacing: 8px; /* Más separación */
+        color: #e2e5eb; /* Más claro y destacado */
+        white-space: pre;
+        padding-right: 40px; /* Evita cortes en el loop */
+    }
+    @keyframes tick {
+        0%   { transform: translate3d(0, 0, 0); }
+        100% { transform: translate3d(-50%, 0, 0); }
+    }
 
     /* ═══════════ CATÁLOGO ═══════════ */
     section#tarjetas, section#pedido {
-        padding: clamp(80px, 10vw, 130px) clamp(20px, 4vw, 60px);
+        padding: clamp(80px, 10vw, 130px) clamp(16px, 3vw, 48px);
         position: relative;
     }
-    #tarjetas { background: radial-gradient(ellipse 700px 500px at 90% 5%, rgba(255, 90, 90, 0.06), transparent 60%), radial-gradient(ellipse 600px 400px at 10% 95%, rgba(255, 255, 255, 0.02), transparent 60%), var(--brushed), linear-gradient(180deg, #171a20 0%, #12141a 100%); border-top: 1px solid var(--border); }
+    #tarjetas { padding-top: clamp(36px, 4.5vw, 64px); background: radial-gradient(ellipse 700px 500px at 90% 5%, rgba(255, 90, 90, 0.06), transparent 60%), radial-gradient(ellipse 600px 400px at 10% 95%, rgba(255, 255, 255, 0.02), transparent 60%), var(--brushed), linear-gradient(180deg, #171a20 0%, #12141a 100%); border-top: 1px solid var(--border); }
     #pedido { background: radial-gradient(ellipse 700px 400px at 50% 100%, rgba(255, 90, 90, 0.05), transparent 60%), var(--brushed), linear-gradient(180deg, #12141a 0%, #0e1014 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
     .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(34px, 4.5vw, 52px); padding-bottom: 18px; border-bottom: 1px solid var(--border); position: relative; }
@@ -368,15 +359,30 @@
     .cat-tile:hover { transform: translateY(-5px); border-color: rgba(255, 90, 90, 0.5); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65), 0 0 40px rgba(255, 90, 90, 0.18); }
     .cat-tile-name { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 12px; font-family: 'Bebas Neue', sans-serif; font-size: clamp(1rem, 1.6vw, 1.3rem); letter-spacing: 1.5px; text-align: center; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85); z-index: 2; line-height: 1.15; }
 
+    /* ═══ PROMO BADGES EPIC ═══ */
     .cat-promo {
         position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
         z-index: 3;
-        background: var(--laser); color: #fff;
-        font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem;
-        letter-spacing: 1px; padding: 6px 0;
+        background: var(--promo-grad);
+        background-size: 200% 200%;
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 900;
+        letter-spacing: 5px;
+        padding: 9px 0;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 0 12px rgba(255,255,255,0.15);
+        box-shadow: 0 4px 22px rgba(255, 40, 40, 0.6), 0 0 40px rgba(255, 40, 40, 0.32), inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.35);
+        border-top: 1px solid rgba(255, 200, 200, 0.55);
+        border-bottom: 1px solid rgba(255, 200, 200, 0.55);
         pointer-events: none;
+        animation: promoShine 4s ease-in-out infinite;
+    }
+    @keyframes promoShine {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
     }
 
     .cat-block { margin-bottom: clamp(56px, 7vw, 90px); scroll-margin-top: 24px; }
@@ -387,15 +393,22 @@
     .cat-title em { font-family: 'Space Mono', monospace; font-style: italic; font-size: 0.5em; letter-spacing: 2px; color: var(--laser); margin-left: 12px; vertical-align: middle; }
     .cat-desc { font-size: 0.92rem; font-weight: 500; color: var(--soft); line-height: 1.55; max-width: 48ch; margin-top: 6px; }
 
-    .promo-badge {
-        display: flex;
-        align-items: center;
-    }
+    .promo-badge { display: flex; align-items: center; }
     .promo-flash {
-        background: var(--laser); color: var(--bg);
-        font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
-        letter-spacing: 1px; padding: 6px 16px; border-radius: 30px;
-        box-shadow: 0 0 20px var(--laser-glow);
+        background: var(--promo-grad);
+        background-size: 200% 200%;
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.7rem;
+        font-weight: 900;
+        letter-spacing: 5px;
+        padding: 10px 26px;
+        border-radius: 30px;
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 0 14px rgba(255,255,255,0.18);
+        box-shadow: 0 6px 28px rgba(255, 40, 40, 0.55), 0 0 48px rgba(255, 40, 40, 0.32), inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(0,0,0,0.35);
+        border: 1px solid rgba(255, 200, 200, 0.55);
+        animation: promoShine 4s ease-in-out infinite;
     }
 
     .works-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 1.8vw, 22px); }
@@ -420,12 +433,22 @@
     .promo-mini {
         position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
         z-index: 4;
-        background: var(--laser); color: #fff;
-        font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem;
-        letter-spacing: 1px; padding: 6px 0;
+        background: var(--promo-grad);
+        background-size: 200% 200%;
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 900;
+        letter-spacing: 5px;
+        padding: 9px 0;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 0 12px rgba(255,255,255,0.15);
+        box-shadow: 0 4px 22px rgba(255, 40, 40, 0.6), 0 0 40px rgba(255, 40, 40, 0.32), inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.35);
+        border-top: 1px solid rgba(255, 200, 200, 0.55);
+        border-bottom: 1px solid rgba(255, 200, 200, 0.55);
         pointer-events: none;
+        animation: promoShine 4s ease-in-out infinite;
     }
 
     .work-add {
@@ -511,7 +534,23 @@
     .cart-item-total { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; background: var(--chrome); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .cart-item-remove { width: 24px; height: 24px; border-radius: 50%; color: var(--muted); font-size: 0.78rem; display: flex; align-items: center; justify-content: center; transition: 0.18s; }
     .cart-item-remove:hover { background: rgba(255, 77, 77, 0.12); color: #ff8a8a; }
-    .cart-promo-tag { display: inline-block; background: var(--laser); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: 4px; margin-left: 6px; text-transform: uppercase; vertical-align: middle; }
+    .cart-promo-tag {
+        display: inline-block;
+        background: var(--promo-grad);
+        background-size: 200% 200%;
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 900;
+        letter-spacing: 2.5px;
+        padding: 3px 9px;
+        border-radius: 4px;
+        margin-left: 6px;
+        text-transform: uppercase;
+        vertical-align: middle;
+        box-shadow: 0 0 10px rgba(255, 40, 40, 0.5), inset 0 1px 0 rgba(255,255,255,0.35);
+        animation: promoShine 4s ease-in-out infinite;
+    }
     .cart-footer { padding: 20px 22px 24px; border-top: 1px solid var(--border); background: rgba(8, 10, 14, 0.6); display: flex; flex-direction: column; gap: 14px; }
     .cart-total-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
     .cart-total-row > span:first-child { font-family: 'Space Mono', monospace; font-size: 0.82rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); }
@@ -672,7 +711,7 @@
     #cursorDot.visible { opacity: 1; }
     #cursorDot.hot { width: 12px; height: 12px; box-shadow: 0 0 8px 2px rgba(255, 230, 230, 1), 0 0 22px 6px rgba(255, 107, 107, 0.85), 0 0 44px 12px rgba(255, 60, 60, 0.35); }
     @media (hover: none), (pointer: coarse) { body.custom-cursor, body.custom-cursor * { cursor: auto !important; } #cursorDot, #sparkCanvas { display: none !important; } }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .admin-dot { animation: none !important; } .ticker-track { animation: none; } .hero-title .outline::after { animation: none; } .plate { animation: none !important; } }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .admin-dot { animation: none !important; } .hero-title .outline::after { animation: none; } .plate { animation: none !important; } }
 
     /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 1100px) {
@@ -683,7 +722,6 @@
         .works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 860px) {
-        /* Mobile Hero Restructure */
         .hero { min-height: calc(100dvh - 48px); padding-top: 20px; }
         .hero-split { display: contents; }
         .hero-inner { display: contents; }
@@ -705,6 +743,7 @@
             width: 100%;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
+            justify-content: center;
         }
         .hero-logo { justify-content: center; font-size: 1.1rem; }
         
@@ -718,13 +757,14 @@
             white-space: nowrap;
         }
         .hero-title br { display: none; }
+        .hero-title .outline { -webkit-text-stroke-width: 1px; }
         
         .cards-stack {
             order: 2;
             height: 240px;
             --ps: min(120px, 30vw);
             margin-bottom: 30px;
-            transform: translateY(0);
+            transform: translateY(0) translateX(0); /* Resetea el desplazamiento en mobile */
         }
         .plate-back {
             display: block !important;
@@ -762,16 +802,23 @@
             padding: 0 20px;
         }
         
-        .hero-stats {
+        .hero-actions {
             order: 5;
+            display: flex !important;
             justify-content: center;
-            gap: 36px;
+            flex-wrap: wrap;
+            gap: 8px;
+            width: calc(100% - 32px);
             margin-bottom: 24px;
-            padding: 16px 20px;
-            width: calc(100% - 40px);
+        }
+        .hero-actions .btn-primary,
+        .hero-actions .btn-order,
+        .hero-actions .btn-ghost {
+            font-size: 0.68rem;
+            padding: 12px 16px;
+            letter-spacing: 0.5px;
         }
         
-        .hero-actions { display: none !important; }
         .mobile-buttons { display: none !important; }
     }
     @media (max-width: 720px) {
@@ -798,7 +845,8 @@
         .lb-actions { flex-direction: column; align-items: stretch; }
         .form-actions { flex-direction: column; }
         .form-actions button { width: 100%; }
-        .promo-mini, .cat-promo { font-size: 0.75rem; padding: 4px 0; }
+        .cat-promo, .promo-mini { font-size: 0.9rem; letter-spacing: 3px; padding: 7px 0; }
+        .promo-flash { font-size: 1.3rem; letter-spacing: 3px; padding: 8px 18px; }
     }
 </style>
 </head>
@@ -811,17 +859,20 @@
 <section class="hero" aria-label="GAMBITO LÁSER">
     <div class="hero-nav">
         <div class="hero-logo">GAMBITO <span class="logo-dot"></span> LÁSER</div>
-        <div class="hero-meta">Buenos Aires - Ezeiza · Envíos internacionales</div>
+        <div class="hero-meta">
+            Buenos Aires - Ezeiza · Envíos internacionales
+            <svg class="plane-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </div>
     </div>
     <div class="hero-split">
         <div class="hero-inner">
             <p class="hero-eyebrow">Servicio Profesional de Grabado Láser</p>
-            <h1 class="hero-title">Precisión absoluta<br>en acero.</h1>
-            <p class="hero-desc">Grabado láser de fibra óptica sobre acero inoxidable 430.<br>Piezas permanentes, hechas a mano, pensadas para durar décadas.</p>
-            <div class="hero-stats">
-                <div class="hero-stat"><strong>5+</strong><span>Años Experiencia</span></div>
-                <div class="hero-stat"><strong>430</strong><span>Acero Inoxidable</span></div>
-            </div>
+            <h1 class="hero-title">
+                <span class="grad">Precisión</span><br>
+                <span class="outline">absoluta</span><br>
+                <span class="grad">en acero.</span>
+            </h1>
+            <p class="hero-desc">Grabado láser de fibra óptica sobre acero <strong class="hero-430">430</strong>.<br>Piezas permanentes, hechas a mano, pensadas para durar décadas.</p>
             <div class="hero-actions">
                 <a href="#tarjetas" class="btn-primary">Ver catálogo</a>
                 <button type="button" class="btn-order" id="heroOrderBtn">Realizar pedido</button>
@@ -856,8 +907,7 @@
 
 <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-        <span>ACERO INOXIDABLE 430 ✦ GRABADO LÁSER ✦ PERMANENTE ✦ HECHO A MANO ✦ MONOCROMÁTICAS ✦ PRESENTACIÓN ✦ A COLOR ✦ </span>
-        <span>ACERO INOXIDABLE 430 ✦ GRABADO LÁSER ✦ PERMANENTE ✦ HECHO A MANO ✦ MONOCROMÁTICAS ✦ PRESENTACIÓN ✦ A COLOR ✦ </span>
+        <span>ACERO 430 ✦ GRABADO LÁSER ✦ PERMANENTE ✦ HECHO A MANO ✦ MONOCROMÁTICAS ✦ PRESENTACIÓN ✦ A COLOR ✦ </span><span>ACERO 430 ✦ GRABADO LÁSER ✦ PERMANENTE ✦ HECHO A MANO ✦ MONOCROMÁTICAS ✦ PRESENTACIÓN ✦ A COLOR ✦ </span>
     </div>
 </div>
 
@@ -875,9 +925,6 @@
             <div>
                 <h3 class="cat-title">Monocromáticas <em>B/N</em></h3>
                 <p class="cat-desc">Láser de fibra óptica · Alto contraste · Trabajos personalizados</p>
-            </div>
-            <div class="promo-badge">
-                <div class="promo-flash">3 x $40.000</div>
             </div>
         </div>
         <div class="cat-carousel">
@@ -937,7 +984,7 @@
             <span>© <span id="year">2026</span> GAMBITO LÁSER</span>
             <button type="button" class="admin-trigger" id="adminTrigger" aria-label="Panel de administración"><span class="admin-dot"></span></button>
         </div>
-        <span>Envíos internacionales · Buenos Aires - Ezeiza</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;">Envíos internacionales · Buenos Aires - Ezeiza <svg class="plane-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
     </div>
 </footer>
 
@@ -1322,7 +1369,7 @@
             const it = items.find(x => x.id === i.id); if (!it) return "";
             const unit = priceOf(it.category);
             const showPromoTag = it.category === "mono" && i.qty >= MONO_PROMO_QTY;
-            return '<div class="cart-item"><div class="cart-item-img"><img src="' + esc(it.img) + '" alt=""></div><div class="cart-item-info"><h4>' + esc(it.title) + '</h4><p>' + esc(catName(it.category)) + '</p><div class="cart-item-qty"><button data-qty="-" data-id="' + esc(it.id) + '">−</button><span>' + i.qty + '</span><button data-qty="+" data-id="' + esc(it.id) + '">+</button></div></div><div class="cart-item-side"><span class="cart-item-total">' + fmt(lineTotal(it, i.qty)) + (showPromoTag ? '<span class="cart-promo-tag">3×40k</span>' : '') + '</span><button class="cart-item-remove" data-remove="' + esc(it.id) + '">✕</button></div></div>';
+            return '<div class="cart-item"><div class="cart-item-img"><img src="' + esc(it.img) + '" alt=""></div><div class="cart-item-info"><h4>' + esc(it.title) + '</h4><p>' + esc(catName(it.category)) + '</p><div class="cart-item-qty"><button data-qty="-" data-id="' + esc(it.id) + '">−</button><span>' + i.qty + '</span><button data-qty="+" data-id="' + esc(it.id) + '">+</button></div></div><div class="cart-item-side"><span class="cart-item-total">' + fmt(lineTotal(it, i.qty)) + (showPromoTag ? '<span class="cart-promo-tag">PROMO</span>' : '') + '</span><button class="cart-item-remove" data-remove="' + esc(it.id) + '">✕</button></div></div>';
         }).join("");
         if (totalEl) totalEl.textContent = fmt(cartTotal());
         if (countLabel) countLabel.textContent = q + (q === 1 ? " pieza" : " piezas");
@@ -1371,7 +1418,7 @@
         el.innerHTML = CATS.map(c => {
             const first = items.filter(x => x.category === c.id).sort((a, b) => (a.sort || 0) - (b.sort || 0))[0];
             const bg = first && first.img ? ' style="background-image:url(\'' + esc(first.img) + '\')"' : '';
-            const promo = c.id === "mono" ? '<span class="cat-promo">3 × $40k</span>' : '';
+            const promo = c.id === "mono" ? '<span class="cat-promo">PROMOCIÓN</span>' : '';
             return '<a class="cat-tile" href="#cat-' + esc(c.id) + '"' + bg + '>' + promo + '<span class="cat-tile-name">' + esc(c.short || c.name) + '</span></a>';
         }).join("");
     }
@@ -1384,7 +1431,7 @@
             if (!list.length) { grid.innerHTML = '<div class="works-empty">Próximamente</div>'; return; }
             grid.innerHTML = list.map(w => {
                 const inCart = cart.some(i => i.id === w.id);
-                const promo = w.category === "mono" ? '<span class="promo-mini">3 × $40k</span>' : '';
+                const promo = w.category === "mono" ? '<span class="promo-mini">PROMOCIÓN</span>' : '';
                 return '<article class="work-card" data-open="' + esc(w.id) + '"><div class="work-media">' + promo + '<img src="' + esc(w.img) + '" alt="' + esc(w.title) + '"><button class="work-add' + (inCart ? ' in-cart' : '') + '" data-add="' + esc(w.id) + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div><div class="work-body"><h3 class="work-title">' + esc(w.title) + '</h3><p class="work-desc">' + esc(w.desc) + '</p><div class="work-price">' + fmt(priceOf(w.category)) + '<span>ARS</span></div></div></article>';
             }).join("");
         });
@@ -1722,7 +1769,6 @@
 
     async function init() {
         cart = loadCart();
-        // Render hero images from local cache instantly (repeat visits)
         try {
             const rawHero = localStorage.getItem("gambito_" + KEY_HERO);
             if (rawHero) { const h = JSON.parse(rawHero); if (h && typeof h === "object") heroData = { c1: h.c1 || "", c2: h.c2 || "", c3: h.c3 || "" }; }
@@ -1820,7 +1866,7 @@
         data.forEach(function (p, idx) {
             if (!p.ctx) return;
             var isVisible = p.el.offsetParent !== null;
-            if (!isVisible) return; // Skip hidden cards
+            if (!isVisible) return;
             
             var isActive = isMobile || (idx === activeIdx);
 
