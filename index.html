@@ -234,7 +234,8 @@
         height: 500px;
         perspective: 1400px;
         margin: 0 auto;
-        transform: translateY(-10px) translateX(-45px); /* Movido 20px extra a la izquierda */
+        transform: translateY(-10px) translateX(-75px);
+
     }
     .plate {
         container-type: inline-size;
@@ -302,7 +303,7 @@
     .plate.engraving .plate-beam,
     .plate.engraving .plate-sparks { opacity: 1; }
 
-    .plate-cap { font-family: 'Space Mono', monospace; font-size: 0.76rem; font-weight: 700; letter-spacing: 3px; color: var(--soft); }
+    .plate-cap { font-family: 'Space Mono', monospace; font-size: 0.76rem; font-weight: 700; letter-spacing: 3px; color: var(--soft); transform: translateX(-75px); }
     .plate-cap b { color: var(--laser); text-shadow: 0 0 12px var(--laser-glow); }
 
     .mobile-buttons { display: none; }
@@ -906,7 +907,7 @@
                     <canvas class="plate-sparks"></canvas>
                 </div>
             </div>
-            <div class="plate-cap">GRABANDO · <b id="plateProg">0%</b></div>
+            <div class="plate-cap"><b>100%</b> GRABADO LÁSER</div>
         </div>
     </div>
 </section>
@@ -1798,8 +1799,7 @@
     'use strict';
     var plates = document.querySelectorAll('.plate');
     var stack = document.getElementById('cardsStack');
-    var prog = document.getElementById('plateProg');
-    if (!plates.length || !stack || !prog) return;
+    if (!plates.length || !stack) return;
 
     var DUR = 4800, HOLD = 2800;
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1850,9 +1850,8 @@
         data.forEach(function (pp, j) { pp.el.classList.toggle('engraving', j === activeIdx); });
     });
 
-    if (still) {
+        if (still) {
         data.forEach(function (p) { if (p.eng) p.eng.style.clipPath = 'none'; });
-        prog.textContent = '100%';
         return;
     }
 
@@ -1911,8 +1910,7 @@
             }
         });
 
-        var pct = Math.round(progress * 100);
-        if (pct !== lastPct) { lastPct = pct; prog.textContent = pct + '%'; }
+        // Eliminada la actualización de porcentaje para dejarlo fijo en 100%
     }
     requestAnimationFrame(frame);
 })();
