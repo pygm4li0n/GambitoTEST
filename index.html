@@ -36,6 +36,12 @@
         --brushed: repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, rgba(0,0,0,0.05) 1px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 4px);
     }
 
+    @property --angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+    }
+
     html { scroll-behavior: smooth; }
     body {
         background: repeating-linear-gradient(90deg, rgba(255,255,255,0.008) 0px, rgba(255,255,255,0.008) 1px, transparent 1px, transparent 3px), radial-gradient(ellipse at 50% -10%, #1a1d24 0%, #0d0f13 60%, #080a0e 100%);
@@ -57,7 +63,7 @@
     /* ═══════════ HERO ═══════════ */
     .hero {
         position: relative;
-        min-height: calc(100vh - 48px); /* Ajuste para que entre justo el ticker */
+        min-height: calc(100dvh - 48px); /* Ajuste para que entre justo el ticker */
         padding: clamp(20px, 4vw, 40px) clamp(20px, 5vw, 60px) 0;
         display: flex;
         flex-direction: column;
@@ -244,7 +250,7 @@
         height: 500px;
         perspective: 1400px;
         margin: 0 auto;
-        transform: translateY(-20px); /* Sube las cards */
+        transform: translateY(-10px); /* Sube las cards */
     }
     .plate {
         container-type: inline-size;
@@ -254,21 +260,32 @@
         aspect-ratio: 5.4 / 8.6;
         border-radius: 16px;
         overflow: hidden;
-        background: var(--brushed), linear-gradient(115deg, #7d838e 0%, #e8ebf0 35%, #c3c8d0 60%, #868c97 100%);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        
+        /* RIM GRADIENT */
+        border: 2px solid transparent;
+        background:
+            var(--brushed) padding-box,
+            linear-gradient(115deg, #7d838e 0%, #e8ebf0 35%, #c3c8d0 60%, #868c97 100%) padding-box,
+            conic-gradient(from var(--angle), transparent 0%, var(--laser) 25%, transparent 50%, transparent 100%) border-box;
+        
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.35), 0 24px 48px rgba(0,0,0,0.75), 0 0 60px rgba(255, 90, 90, 0.15);
         transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.4, 1), box-shadow 0.55s ease, opacity 0.3s ease;
         cursor: pointer;
         will-change: transform;
+        animation: spin 4s linear infinite;
     }
-    .plate-back  { left: 0;   transform: translateY(-35%) rotate(-12deg); z-index: 1; }
-    .plate-mid   { left: 50%; transform: translate(-50%, -65%) rotate(0deg); z-index: 3; }
-    .plate-front { left: 100%; transform: translate(-100%, -35%) rotate(12deg); z-index: 2; }
+    @keyframes spin {
+        to { --angle: 360deg; }
+    }
+
+    .plate-back  { left: 0;   transform: translateY(-45%) rotate(-12deg); z-index: 1; }
+    .plate-mid   { left: 50%; transform: translate(-50%, -50%) rotate(0deg); z-index: 3; }
+    .plate-front { left: 100%; transform: translate(-100%, -45%) rotate(12deg); z-index: 2; }
 
     .plate:hover { z-index: 20 !important; }
-    .plate-back:hover  { transform: translateY(-39%) rotate(-8deg)  scale(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.4), 0 40px 80px rgba(0,0,0,0.9), 0 0 120px rgba(255, 90, 90, 0.35); }
-    .plate-mid:hover   { transform: translate(-50%, -69%) rotate(0deg) scale(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.4), 0 40px 80px rgba(0,0,0,0.9), 0 0 120px rgba(255, 90, 90, 0.35); }
-    .plate-front:hover { transform: translate(-100%, -39%) rotate(8deg)   scale(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.4), 0 40px 80px rgba(0,0,0,0.9), 0 0 120px rgba(255, 90, 90, 0.35); }
+    .plate-back:hover  { transform: translateY(-49%) rotate(-8deg)  scale(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.4), 0 40px 80px rgba(0,0,0,0.9), 0 0 120px rgba(255, 90, 90, 0.35); }
+    .plate-mid:hover   { transform: translate(-50%, -54%) rotate(0deg) scale(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.4), 0 40px 80px rgba(0,0,0,0.9), 0 0 120px rgba(255, 90, 90, 0.35); }
+    .plate-front:hover { transform: translate(-100%, -49%) rotate(8deg)   scale(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.4), 0 40px 80px rgba(0,0,0,0.9), 0 0 120px rgba(255, 90, 90, 0.35); }
 
     .plate-eng {
         position: absolute; inset: 0;
@@ -349,13 +366,14 @@
     .cat-tile-name { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 12px; font-family: 'Bebas Neue', sans-serif; font-size: clamp(1rem, 1.6vw, 1.3rem); letter-spacing: 1.5px; text-align: center; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85); z-index: 2; line-height: 1.15; }
 
     .cat-promo {
-        position: absolute; top: 12px; right: 12px;
+        position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
         z-index: 3;
         background: var(--laser); color: #fff;
-        font-family: 'Bebas Neue', sans-serif; font-size: 0.82rem;
-        letter-spacing: 0.5px; padding: 4px 10px;
-        border-radius: 6px; line-height: 1.1;
-        box-shadow: 0 0 16px var(--laser-glow), 0 2px 8px rgba(0,0,0,0.5);
+        font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem;
+        letter-spacing: 1px; padding: 6px 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        pointer-events: none;
     }
 
     .cat-block { margin-bottom: clamp(56px, 7vw, 90px); scroll-margin-top: 24px; }
@@ -397,10 +415,11 @@
     .work-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 62%, rgba(8, 10, 14, 0.45) 100%); pointer-events: none; z-index: 1; }
 
     .promo-mini {
-        position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+        position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
+        z-index: 4;
         background: var(--laser); color: #fff;
         font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem;
-        letter-spacing: 1px; padding: 6px 10px;
+        letter-spacing: 1px; padding: 6px 0;
         text-align: center;
         box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         pointer-events: none;
@@ -650,7 +669,7 @@
     #cursorDot.visible { opacity: 1; }
     #cursorDot.hot { width: 12px; height: 12px; box-shadow: 0 0 8px 2px rgba(255, 230, 230, 1), 0 0 22px 6px rgba(255, 107, 107, 0.85), 0 0 44px 12px rgba(255, 60, 60, 0.35); }
     @media (hover: none), (pointer: coarse) { body.custom-cursor, body.custom-cursor * { cursor: auto !important; } #cursorDot, #sparkCanvas { display: none !important; } }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .admin-dot { animation: none !important; } .ticker-track { animation: none; } .hero-title .outline::after { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .admin-dot { animation: none !important; } .ticker-track { animation: none; } .hero-title .outline::after { animation: none; } .plate { animation: none !important; } }
 
     /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 1100px) {
@@ -661,34 +680,78 @@
         .works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 860px) {
-        .hero-nav { flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; }
-        .hero-split { grid-template-columns: 1fr; gap: 40px; }
-        .hero-inner { align-items: center; text-align: center; }
-        .hero-eyebrow { padding-left: 0; }
-        .hero-eyebrow::before { display: none; }
-        .hero-stats { justify-content: center; gap: 24px; }
-        .hero-actions { justify-content: center; display: none; }
-        .cards-stack { height: 380px; --ps: min(190px, 44vw); transform: translateY(0); }
-        .plate-back { display: none !important; }
-        .plate-mid { left: 6% !important; transform: translateY(-50%) rotate(-6deg) !important; }
-        .plate-front { left: auto !important; right: 6% !important; transform: translateY(-50%) rotate(5deg) !important; }
-        .plate-mid:hover   { transform: translateY(-54%) rotate(-4deg) scale(1.05) !important; }
-        .plate-front:hover { transform: translateY(-54%) rotate(3deg) scale(1.05) !important; }
-        .mobile-buttons {
-            display: flex; gap: 8px; justify-content: center;
-            width: 100%; max-width: 420px;
-            margin: 32px auto 0;
-            padding: 0 4px;
+        /* Mobile Hero Restructure */
+        .hero { min-height: calc(100dvh - 48px); padding-top: 20px; }
+        .hero-split { display: contents; }
+        .hero-inner { display: contents; }
+        .hero-stage { display: contents; }
+        
+        .hero-nav {
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding-bottom: 15px;
+            width: 100%;
         }
-        .mobile-buttons > * {
-            flex: 1; padding: 12px 6px;
-            font-size: 0.66rem; letter-spacing: 1px;
-            text-align: center; justify-content: center;
+        .hero-meta { text-align: center; font-size: 0.6rem; letter-spacing: 1px; }
+        .hero-logo { justify-content: center; font-size: 1.1rem; }
+        
+        .hero-eyebrow { display: none; }
+        
+        .hero-title {
+            order: 1;
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 24px;
             white-space: nowrap;
         }
-        .hero-title { font-size: clamp(3rem, 14vw, 4.6rem); }
-        .promo-badge { align-items: flex-start; text-align: left; }
-        .promo-flash { font-size: 1.1rem; }
+        .hero-title br { display: none; }
+        
+        .cards-stack {
+            order: 2;
+            height: 240px;
+            --ps: min(130px, 38vw);
+            margin-bottom: 30px;
+            transform: translateY(0);
+        }
+        .plate-back { display: none !important; }
+        .plate-mid {
+            left: 25% !important;
+            transform: translate(-50%, -50%) rotate(-5deg) !important;
+        }
+        .plate-front {
+            left: 75% !important;
+            transform: translate(-50%, -50%) rotate(5deg) !important;
+        }
+        .plate-mid:hover {
+            transform: translate(-50%, -54%) rotate(-3deg) scale(1.05) !important;
+        }
+        .plate-front:hover {
+            transform: translate(-50%, -54%) rotate(3deg) scale(1.05) !important;
+        }
+        
+        .plate-cap { order: 3; margin-bottom: 20px; }
+        
+        .hero-desc {
+            order: 4;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            padding: 0 20px;
+        }
+        
+        .hero-stats {
+            order: 5;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            width: calc(100% - 40px);
+        }
+        
+        .hero-actions { display: none !important; }
+        .mobile-buttons { display: none !important; }
     }
     @media (max-width: 720px) {
         .cat-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -714,8 +777,7 @@
         .lb-actions { flex-direction: column; align-items: stretch; }
         .form-actions { flex-direction: column; }
         .form-actions button { width: 100%; }
-        .cards-stack { height: 340px; }
-        .promo-mini, .cat-promo { font-size: 0.72rem; padding: 3px 8px; }
+        .promo-mini, .cat-promo { font-size: 0.75rem; padding: 4px 0; }
     }
 </style>
 </head>
@@ -727,13 +789,13 @@
 
 <section class="hero" aria-label="GAMBITO LÁSER">
     <div class="hero-nav">
-        <div class="hero-logo"><span class="logo-dot"></span>GAMBITO · LÁSER</div>
+        <div class="hero-logo">GAMBITO <span class="logo-dot"></span> LÁSER</div>
         <div class="hero-meta">Buenos Aires - Ezeiza · Envíos internacionales</div>
     </div>
     <div class="hero-split">
         <div class="hero-inner">
             <p class="hero-eyebrow">Servicio Profesional de Grabado Láser</p>
-            <h1 class="hero-title">Precisión<br><span class="outline">absoluta</span><br>en acero.</h1>
+            <h1 class="hero-title">Precisión absoluta<br>en acero.</h1>
             <p class="hero-desc">Grabado láser de fibra óptica sobre acero inoxidable 430.<br>Piezas permanentes, hechas a mano, pensadas para durar décadas.</p>
             <div class="hero-stats">
                 <div class="hero-stat"><strong>5+</strong><span>Años Experiencia</span></div>
@@ -774,12 +836,6 @@
             </div>
             <div class="plate-cap">GRABANDO · <b id="plateProg">0%</b></div>
         </div>
-    </div>
-
-    <div class="mobile-buttons">
-        <a href="#tarjetas" class="btn-primary">Ver</a>
-        <button type="button" class="btn-order" id="mobileOrderBtn">Pedir</button>
-        <a href="https://wa.me/5491131388625" target="_blank" rel="noopener noreferrer" class="btn-ghost">Consultar</a>
     </div>
 </section>
 
@@ -1653,7 +1709,7 @@
 </script>
 
 <script>
-/* Grabado láser en vivo — solo top card + hover */
+/* Grabado láser en vivo — solo top card + hover / mobile all */
 (function () {
     'use strict';
     var plates = document.querySelectorAll('.plate');
@@ -1663,6 +1719,7 @@
 
     var DUR = 4800, HOLD = 2800;
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isMobile = window.innerWidth <= 860;
 
     var data = Array.prototype.map.call(plates, function (p) {
         var cv = p.querySelector('.plate-sparks');
@@ -1691,7 +1748,10 @@
         });
     }
     sizeAll();
-    window.addEventListener('resize', sizeAll);
+    window.addEventListener('resize', function() {
+        isMobile = window.innerWidth <= 860;
+        sizeAll();
+    });
 
     data.forEach(function (p, i) { p.el.classList.toggle('engraving', i === activeIdx); });
 
@@ -1725,40 +1785,47 @@
         var progress = Math.min(e / DUR, 1);
         var on = e < DUR;
 
-        data.forEach(function (p) {
+        data.forEach(function (p, idx) {
+            if (!p.ctx) return;
+            var isVisible = p.el.offsetParent !== null;
+            if (!isVisible) return; // Skip hidden cards
+            
+            var isActive = isMobile || (idx === activeIdx);
+
             if (p.eng) {
                 p.eng.style.clipPath = 'inset(0 0 ' + ((1 - progress) * 100).toFixed(2) + '% 0)';
                 p.eng.style.opacity = e > DUR + HOLD - 500 ? (DUR + HOLD - e) / 500 : 1;
             }
-            if (p.ctx) p.ctx.clearRect(0, 0, p.W, p.H);
-        });
+            
+            p.ctx.clearRect(0, 0, p.W, p.H);
 
-        var active = data[activeIdx];
-        if (active && active.ctx) {
-            if (on) {
-                active.beam.style.top = (progress * 100) + '%';
+            if (isActive && on) {
+                p.beam.style.top = (progress * 100) + '%';
+                p.beam.style.opacity = 1;
 
                 for (var i = 0; i < 3; i++) {
-                    active.parts.push({
-                        x: active.W * (0.12 + Math.random() * 0.76),
-                        y: progress * active.H,
+                    p.parts.push({
+                        x: p.W * (0.12 + Math.random() * 0.76),
+                        y: progress * p.H,
                         vx: (Math.random() - 0.5) * 2.4,
                         vy: -(Math.random() * 1.6 + 0.2),
                         l: 1
                     });
                 }
 
-                active.ctx.globalCompositeOperation = 'lighter';
-                for (var j = active.parts.length - 1; j >= 0; j--) {
-                    var q = active.parts[j];
+                p.ctx.globalCompositeOperation = 'lighter';
+                for (var j = p.parts.length - 1; j >= 0; j--) {
+                    var q = p.parts[j];
                     q.x += q.vx; q.y += q.vy; q.vy += 0.06; q.l -= 0.03;
-                    if (q.l <= 0) { active.parts.splice(j, 1); continue; }
-                    active.ctx.fillStyle = 'rgba(255,' + ((130 + q.l * 100) | 0) + ',' + ((100 + q.l * 60) | 0) + ',' + q.l + ')';
-                    active.ctx.fillRect(q.x, q.y, 2, 2);
+                    if (q.l <= 0) { p.parts.splice(j, 1); continue; }
+                    p.ctx.fillStyle = 'rgba(255,' + ((130 + q.l * 100) | 0) + ',' + ((100 + q.l * 60) | 0) + ',' + q.l + ')';
+                    p.ctx.fillRect(q.x, q.y, 2, 2);
                 }
-                active.ctx.globalCompositeOperation = 'source-over';
+                p.ctx.globalCompositeOperation = 'source-over';
+            } else {
+                p.beam.style.opacity = 0;
             }
-        }
+        });
 
         var pct = Math.round(progress * 100);
         if (pct !== lastPct) { lastPct = pct; prog.textContent = pct + '%'; }
